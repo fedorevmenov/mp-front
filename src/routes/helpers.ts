@@ -1,7 +1,5 @@
 
-
 // App paths
-
 
 export const pathsPublic: { [k: string]: string } = {
     home: '/',

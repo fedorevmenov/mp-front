@@ -1,12 +1,15 @@
 import styled, { createGlobalStyle } from 'styled-components'
 
-import { HEADER_HEIGHT, FOOTER_HEIGHT } from './const'
-import colors from './const/colors'
+import { HEADER_HEIGHT, FOOTER_HEIGHT } from 'consts'
+import colors from 'consts/colors'
 
 
+//
+// Global tags styling
+//
 
-export const AppStyle = createGlobalStyle`
-    body {
+export const AppStyles = createGlobalStyle`
+  body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
@@ -17,6 +20,7 @@ export const AppStyle = createGlobalStyle`
     color: #5e5873;
     min-width: 320px;
   }
+
   *,
   *:before,
   *:after {
@@ -72,6 +76,10 @@ export const AppStyle = createGlobalStyle`
   }
 `
 
+
+//
+// Global app styled components
+//
 
 export const PageWrapper = styled.div`
   padding: 20px;

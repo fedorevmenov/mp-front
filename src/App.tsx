@@ -1,24 +1,34 @@
-import AccountSettings from "pages/AccountSettings/AccountSettings"
-import HomePage from "pages/HomePage"
-import { Suspense } from "react"
-import PublicRoutes from "routes/PublicRoutes"
-import PrivateRoutes from "routes/PrivateRoutes"
-import Header from "features/Header/Header"
-import { AppStyle, Footer } from "App.styled"
+import { Suspense } from 'react'
+import { useLocation } from 'react-router-dom'
+
+import { paths } from 'routes/helpers'
+import Header from 'features/Header'
+import PublicRoutes from 'routes/PublicRoutes'
+// import PrivateRoutes from 'routes/PrivateRoutes'
+import { AppStyles, Footer } from 'App.styled'
 
 
 export const App = () => {
-    return <>
-        <AppStyle />
-        <Header />
-        <Suspense fallback={'loading'}>
+    const location = useLocation()
 
+    const notIsAuthPage = ![paths.login, paths.register].includes(location.pathname)
+
+
+    return <>
+        <AppStyles />
+
+        {notIsAuthPage && <Header />}
+
+        <Suspense fallback={'Loading...'}>
             <PublicRoutes />
             {/* <PrivateRoutes /> */}
         </Suspense>
-        <Footer>
-            <div>Marketplace-2024</div>
-        </Footer>
+
+        {notIsAuthPage && (
+            <Footer>
+                <div>© Маркетплейс MW</div>
+            </Footer>
+        )}
     </>
 }
 

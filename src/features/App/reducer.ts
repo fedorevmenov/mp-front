@@ -7,7 +7,7 @@ import { createSlice, Dispatch } from "@reduxjs/toolkit"
 
 
 const initialState: I_AppStore = {
-    isLogged: false,
+    isLogged: true,
     isAppLoading: false,
 }
 

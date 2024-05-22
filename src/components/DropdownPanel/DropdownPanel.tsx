@@ -1,6 +1,7 @@
-import { useCallback, useRef, useState } from "react"
+import { useState, useCallback, useRef } from 'react'
+
 import { useOnClickOutside } from 'helpers/hooks'
-import { DropdownWrapper, Wrapper } from "./styled"
+import { Wrapper, DropdownWrapper } from './styled'
 
 
 interface I_DropdownPanel {
@@ -14,26 +15,24 @@ const DropdownPanel: React.FC<I_DropdownPanel> = ({
     children,
     toLeft = false,
 }: I_DropdownPanel) => {
-
     const dropdownWrapperRef = useRef(null)
-    const [isVisible, setVisible] = useState<boolean>(false)
+
+    const [isVisible, setIsVisible] = useState<boolean>(false)
 
     const toggleVisibility = useCallback(() => {
-        setVisible((isVisible) => !isVisible)
+        setIsVisible((isVisible) => !isVisible)
     }, [])
 
     useOnClickOutside(dropdownWrapperRef, toggleVisibility)
 
+
     const Toggler = toggler
 
 
-
     return (
-
-
-
         <Wrapper>
-            <Toggler onclick={toggleVisibility} />
+            <Toggler onClick={toggleVisibility} />
+
             {isVisible && (
                 <DropdownWrapper
                     ref={dropdownWrapperRef}
@@ -47,4 +46,3 @@ const DropdownPanel: React.FC<I_DropdownPanel> = ({
 }
 
 export default DropdownPanel
-

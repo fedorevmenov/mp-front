@@ -19,6 +19,7 @@ import {
     Desc,
     BtnsWrapper,
 } from './styled'
+import { addToFavorites, removeFromFavorites } from 'features/Favorites/reducer'
 
 
 
@@ -46,35 +47,35 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
     isLiked,
     hideLikes = false,
 }) => {
-    // const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch()
     const location = useLocation()
 
-    // const handleFavorites = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    //     const { productId } = e.currentTarget.dataset
+    const handleFavorites = useCallback((e: React.MouseEvent<HTMLElement>) => {
+        const { productId } = e.currentTarget.dataset
 
-    //     dispatch(
-    //         !isLiked ? addToFavorites(+productId!) : removeFromFavorites(+productId!)
-    //     )
-    // }, [dispatch, isLiked])
+        dispatch(
+            !isLiked ? addToFavorites(+productId!) : removeFromFavorites(+productId!)
+        )
+    }, [dispatch, isLiked])
 
     const isFavoritesPage = useMemo(
         () => location.pathname === paths.favorites,
         [location.pathname]
     )
 
-    // const removeFavorite = useCallback(
-    //     (e: React.MouseEvent<HTMLElement>) => {
-    //         //   dispatch(
-    //         //     removeFromFavorites(+e.currentTarget.dataset.productId!)
-    //         //   )
-    //     }, [dispatch]
-    // )
+    const removeFavorite = useCallback(
+        (e: React.MouseEvent<HTMLElement>) => {
+            dispatch(
+                removeFromFavorites(+e.currentTarget.dataset.productId!)
+            )
+        }, [dispatch]
+    )
     return (
         <Wrapper>
             {!hideLikes && (
                 <LikeWrapper
                     data-product-id={id}
-                // onClick={handleFavorites}
+                    onClick={handleFavorites}
                 >
                     {isLiked ? <HeartFilled /> : <HeartEmpty />}
                 </LikeWrapper>
@@ -110,7 +111,7 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
                     <Button
                         type='danger'
                         block
-                        // onClick={removeFavorite}
+                        onClick={removeFavorite}
                         data-product-id={id}
                     >
                         Удалить

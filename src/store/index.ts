@@ -1,13 +1,13 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import { useDispatch, useSelector } from 'react-redux'
+import type { TypedUseSelectorHook } from 'react-redux'
 
+import app from 'features/App/reducer'
+import userData from 'features/UserData/reducer'
+import favorites from 'features/Favorites/reducer'
+import type { T_RootState } from './types'
 
-
-import app from '../features/App/reducer'
-import userData from '../features/UserData/reducer'
-import favorites from '../features/Favorites/reducer'
-import { T_RootState } from "./types";
 
 const reducer = combineReducers({
     app,

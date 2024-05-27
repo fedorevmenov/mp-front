@@ -20,6 +20,7 @@ import {
     BtnsWrapper,
 } from './styled'
 import { addToFavorites, removeFromFavorites } from 'features/Favorites/reducer'
+import { useDispatch } from 'react-redux'
 
 
 
@@ -82,7 +83,7 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
             )}
 
             <Link to={`/product/${slug || id}`}>
-                <Image src={`${image}`} />
+                <Image src={`${process.env.REACT_APP_API_URL}/images/products/${image}`} />
             </Link>
 
             <PriceWrapper>

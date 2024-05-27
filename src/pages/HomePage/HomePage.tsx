@@ -18,15 +18,19 @@ const HomePage: React.FC = () => {
 
     const idsInFavorites = useAppSelector(selectFavorites)
 
-    // const [products, setProducts] = useState<any[]>()
+    const [products, setProducts] = useState<any[]>()
 
-    // useEffect(() => {
-    //     get('/products')
-    //         .then((res: I_UniRes) => setProducts(res.data))
-    // }, [])
+    useEffect(() => {
+        get('/products')
+            .then((res: I_UniRes) => setProducts(res.data))
+    }, [])
 
 
-    // if (!products) return <p>Loading</p>
+    if (!products) {return <p>Loading</p>}
+
+
+
+
     return <>
 
         <Helmet>
@@ -37,7 +41,7 @@ const HomePage: React.FC = () => {
             <ProductGroup>
                 <h2>Recomended Products</h2>
                 <ProductGroupContainer>
-                    {dummyProducts.map((p) => (
+                    {products.map((p) => (
                         <ProductCard
                             {...p}
                             key={p.id}

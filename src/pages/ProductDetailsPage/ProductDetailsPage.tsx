@@ -81,11 +81,12 @@ const ProductDetailsPage: React.FC = () => {
             console.log("nu pizdec")
         }
 
+    }, [idOrSlug])
 
 
-
-
-
+    useEffect(() => {
+        get(`/products/${idOrSlug}`)
+            .then((res: I_UniRes) => setProductDetails(res.data))
     }, [idOrSlug])
 
 
@@ -120,7 +121,7 @@ const ProductDetailsPage: React.FC = () => {
         <PageWrapper>
             <Wrapper>
                 <ImagesWrapper>
-                    <Image src={image} />
+                    <Image src={`${process.env.REACT_APP_API_URL}/images/products/${image}`} />
 
                     <LikeWrapper
                         data-product-id={id}
@@ -150,3 +151,7 @@ const ProductDetailsPage: React.FC = () => {
 }
 
 export default ProductDetailsPage
+
+function setProducts(data: any): any {
+    throw new Error('Function not implemented.')
+}

@@ -5,6 +5,7 @@ import { ProductGroupContainer } from "./styled"
 import { dummyProducts } from "pages/dummyProducts"
 import ProductCard from "blocks/ProductCard"
 import { PageWrapper } from "App.styled"
+import { useAppSelector } from "store"
 
 
 
@@ -12,7 +13,7 @@ import { PageWrapper } from "App.styled"
 
 
 const FavoritesPage: React.FC = () => {
-    const idsInFavorites = useSelector(selectFavorites)
+    const idsInFavorites = useAppSelector(selectFavorites)
 
     return <>
         <Helmet>
